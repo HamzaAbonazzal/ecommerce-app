@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /checkout
+Disallow: /cart
+Disallow: /my-orders
+Disallow: /login
+Disallow: /register
+
+Sitemap: https://your-domain.vercel.app/sitemap.xml

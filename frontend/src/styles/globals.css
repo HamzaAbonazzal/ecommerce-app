@@ -1,0 +1,278 @@
+/* ============================================
+   Global Styles & Design Tokens — Blue Edition
+   ============================================ */
+
+:root {
+  /* ===== Brand Colors (Blue System) ===== */
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #3b82f6;
+  --primary-soft: rgba(37, 99, 235, 0.12);
+  --primary-glow: rgba(37, 99, 235, 0.35);
+
+  --secondary: #06b6d4;
+  /* Cyan */
+  --accent: #8b5cf6;
+  /* Violet */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  /* ===== Backgrounds ===== */
+  --bg-body: #eaf1fb;
+  --bg-elevated: #ffffff;
+  --bg-subtle: #f1f5fd;
+
+  /* ===== Text ===== */
+  --text-primary: #0b1a35;
+  --text-secondary: #475569;
+  --text-muted: #8a9ab8;
+
+  /* ===== Glass (Light) ===== */
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-bg-strong: rgba(255, 255, 255, 0.82);
+  --glass-border: rgba(255, 255, 255, 0.85);
+  --glass-shadow: 0 10px 40px rgba(37, 99, 235, 0.12);
+  --glass-blur: blur(24px) saturate(180%);
+
+  /* ===== Border ===== */
+  --border-color: rgba(37, 99, 235, 0.14);
+
+  /* ===== Radius ===== */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+
+  /* ===== Motion ===== */
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ===== Gradients ===== */
+  --gradient-primary: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #06b6d4 100%);
+  --gradient-hero: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 40%, #06b6d4 100%);
+  --gradient-soft: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(6, 182, 212, 0.05));
+
+  /* ===== Background Mesh (Light) ===== */
+  --mesh-1: rgba(37, 99, 235, 0.35);
+  --mesh-2: rgba(6, 182, 212, 0.28);
+  --mesh-3: rgba(139, 92, 246, 0.22);
+  --mesh-4: rgba(59, 130, 246, 0.25);
+}
+
+[data-theme="dark"] {
+  --bg-body: #06101f;
+  --bg-elevated: #0d1a2f;
+  --bg-subtle: #122040;
+
+  --text-primary: #e8eefb;
+  --text-secondary: #a4b3cc;
+  --text-muted: #6b7a99;
+
+  --glass-bg: rgba(13, 26, 47, 0.55);
+  --glass-bg-strong: rgba(13, 26, 47, 0.78);
+  --glass-border: rgba(96, 165, 250, 0.18);
+  --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.55);
+
+  --border-color: rgba(96, 165, 250, 0.15);
+
+  --primary-soft: rgba(59, 130, 246, 0.18);
+  --primary-glow: rgba(59, 130, 246, 0.45);
+
+  --mesh-1: rgba(37, 99, 235, 0.35);
+  --mesh-2: rgba(6, 182, 212, 0.25);
+  --mesh-3: rgba(139, 92, 246, 0.22);
+  --mesh-4: rgba(59, 130, 246, 0.28);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text-primary);
+  transition: background 0.4s ease, color 0.4s ease;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  background: var(--bg-body);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ===== Animated Mesh Background ===== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: -20%;
+  z-index: -2;
+  background:
+    radial-gradient(closest-side at 15% 20%, var(--mesh-1), transparent 70%),
+    radial-gradient(closest-side at 85% 15%, var(--mesh-2), transparent 70%),
+    radial-gradient(closest-side at 25% 85%, var(--mesh-3), transparent 70%),
+    radial-gradient(closest-side at 90% 80%, var(--mesh-4), transparent 70%);
+  filter: blur(80px);
+  opacity: 0.9;
+  animation: meshFloat 24s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* طبقة ناعمة لتفتيح الخلفية */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(1200px 600px at 50% 0%, rgba(255, 255, 255, 0.55), transparent 70%);
+  pointer-events: none;
+  transition: background 0.4s ease;
+}
+
+[data-theme="dark"] body::after {
+  background:
+    radial-gradient(1200px 600px at 50% 0%, rgba(37, 99, 235, 0.12), transparent 70%);
+}
+
+@keyframes meshFloat {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(3%, -2%) scale(1.05);
+  }
+
+  66% {
+    transform: translate(-2%, 3%) scale(0.97);
+  }
+}
+
+[dir="rtl"] body,
+[dir="rtl"] html {
+  font-family: 'Cairo', 'Tajawal', 'Segoe UI', sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2563eb, #06b6d4);
+  border-radius: 10px;
+  border: 2px solid var(--bg-body);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #1d4ed8, #0891b2);
+}
+
+/* ===== Bootstrap overrides ===== */
+.btn {
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  transition: all var(--transition);
+  padding: 10px 20px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  border: none;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.28);
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:not(:disabled):not(.disabled):active {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.42);
+}
+
+.btn-outline-primary {
+  color: var(--primary);
+  border: 1.5px solid rgba(37, 99, 235, 0.4);
+  background: transparent;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  background: var(--primary-soft);
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .btn-outline-primary {
+  color: #7dafff;
+  border-color: rgba(96, 165, 250, 0.4);
+}
+
+[data-theme="dark"] .btn-outline-primary:hover {
+  background: rgba(59, 130, 246, 0.2);
+  color: #b6d1ff;
+}
+
+.form-control,
+.form-select {
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  transition: all var(--transition);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-soft);
+}
+
+.form-control::placeholder {
+  color: var(--text-muted);
+}
+
+/* ===== Badges ===== */
+.badge-soft-primary {
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  border: 1px solid rgba(37, 99, 235, 0.18);
+}
+
+[data-theme="dark"] .badge-soft-primary {
+  color: #7dafff;
+  background: rgba(59, 130, 246, 0.18);
+  border-color: rgba(96, 165, 250, 0.25);
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: var(--primary);
+  color: #fff;
+}
