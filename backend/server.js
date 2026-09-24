@@ -11,19 +11,18 @@ const app = express();
 
 // ===== Middleware =====
 // ===== CORS =====
-const allowedOrigins = [
-  "http://localhost:3000",
-  process.env.CLIENT_URL,
-  // أضف أي نطاق آخر هنا إن لزم
-].filter(Boolean);
+// ===== CORS =====
+const allowedOrigins = ["http://localhost:3000", process.env.CLIENT_URL].filter(
+  Boolean,
+);
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // اسمح بالطلبات بدون origin (mobile apps, Postman)
+      // اسمح بالطلبات بدون origin (Postman, mobile)
       if (!origin) return callback(null, true);
       if (allowedOrigins.includes(origin)) return callback(null, true);
-      // اسمح بكل نطاقات Vercel preview
+      // اسمح بكل نطاقات Vercel
       if (origin.endsWith(".vercel.app")) return callback(null, true);
       callback(new Error("Not allowed by CORS"));
     },
@@ -54,8 +53,9 @@ app.use(notFound);
 app.use(errorHandler);
 
 // ===== Start Server =====
+// ===== Start Server =====
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-  console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`🌍 Environment: ${process.env.NODE_ENV || "development"}`);
 });

@@ -1,6 +1,10 @@
 const mysql = require("mysql2/promise");
 require("dotenv").config();
 
+// دعم SSL لـ Aiven في الإنتاج
+const sslConfig =
+  process.env.DB_SSL === "true" ? { rejectUnauthorized: false } : undefined;
+
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
@@ -10,6 +14,7 @@ const pool = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
+  ssl: sslConfig,
 });
 
 // اختبار الاتصال عند الإقلاع
